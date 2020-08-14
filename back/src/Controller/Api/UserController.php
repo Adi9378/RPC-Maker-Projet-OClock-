@@ -131,7 +131,7 @@ class UserController extends AbstractController
         // Set default role
         $user->setRoles(['ROLE_USER']);
 
-
+        $user->setLevel(1);
         //Create a new avatar
         //add an random image from lorempicsum
         //set it into the user object
@@ -173,8 +173,8 @@ class UserController extends AbstractController
         $email = (new Email())
             ->from('alienmail@example.com')
             ->to($user->getEmail())
-            ->subject('Welcome adventurer!')
-            ->text("Nice to meet you {$user->getFirstName()}! ❤️");
+            ->subject('Bienvenue aventurier ! ')
+            ->text("Heureux de te rencontrer {$user->getUsername()} ! ❤️ Tu as été mis en relation avec un monteur {$user->getBuilder()->getUsername()} qui te recontactera bientôt ! ");
 
         $mailer->send($email);
 

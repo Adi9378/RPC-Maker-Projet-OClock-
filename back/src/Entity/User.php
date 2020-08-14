@@ -157,20 +157,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(
-     *  type="integer"
-     * )
-     * @Assert\Regex(
-     *  "/^\d+/", message = "Entrez un nombre valid",
-     *  groups = {
-     *      "registration",
-     *      "edit-profile"
-     *      }
-     * )
-     * @Assert\NotBlank(
-     *  message = "Ce champ ne peut pas être vide.",
-     *  groups = {
-     *      "registration"
-     *      }
+     *  type="integer",
+     *  nullable=true
      * )
      * @Groups({
      *  "avatar",
@@ -470,7 +458,6 @@ class User implements UserInterface
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
         $this->testimonies = new ArrayCollection();
-        $this->level = 1;
         //$this->builder = new ArrayCollection();
         $this->messagesSend = new ArrayCollection();
         $this->messagesReceived = new ArrayCollection();
