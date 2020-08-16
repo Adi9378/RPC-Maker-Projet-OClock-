@@ -26,20 +26,20 @@ const BackOffice = ({ getClients, clients, user, activateLoad, backLoading, }) =
       </div>
       <div className="backoffice__body">
         <Switch>
-          <Route exact path="/backoffice">
-            backoffice
-          </Route>
           <Route path="/backoffice/clients">
             <Clients clients={clients} isLoading={backLoading} />
           </Route>
-          {/* <Route path="/backoffice/message">
+          <Route path="/backoffice/message">
             <Conversations />
-          </Route> */}
+          </Route>
           <Route path="/backoffice/client/order/edit/:id">
             <OrderEdit />
           </Route>
           <Route path="/backoffice/client/order/:id">
             <Order />
+          </Route>
+          <Route path="/backoffice">
+            backoffice
           </Route>
         </Switch>
       </div>
