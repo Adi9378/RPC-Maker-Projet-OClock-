@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 //
 import Login from 'src/containers/Account/Login';
@@ -19,7 +19,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from '../Home';
 
 // == Composant
-const App = ({ autoLog, isLogged }) => {
+const App = ({ autoLog, isLogged, role }) => {
   useEffect(() => {
     const slug = localStorage.getItem('slug');
     if (slug !== null && isLogged !== true) {
@@ -42,13 +42,21 @@ const App = ({ autoLog, isLogged }) => {
             <Contact />
           </Route>
           <Route path="/user">
-            <User />
+            { isLogged && role === "ROLE_USER" ? (
+              <User />
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
           <Route path="/login">
             <Login />
           </Route>
           <Route path="/backoffice">
-            <BackOffice />
+            { isLogged && role === "ROLE_BUILDER" ? (
+              <BackOffice />
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
           <Route path="/devis">
             <Devis />

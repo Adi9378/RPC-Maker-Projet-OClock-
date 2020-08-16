@@ -27,83 +27,67 @@ import Progress from 'src/components/Account/User/Progress';
 const User = ({
   isLogged, isLoading, username, level, email, role, firstname, lastname, image
 }) => {
-  if (localStorage.getItem('token')) {
-    activateLoad();
-  }
-
   return (
-    <Container fluid>
-      {isLoading && localStorage.getItem('token') && (
-        <Loader />
-      )}
-
-      {isLoading === false && !localStorage.getItem('token') && role !== 'ROLE_USER' && (
-        <Redirect to={{ pathname: '/login' }} />
-      )}
-
-      {isLogged === true && isLoading === false && role === 'ROLE_USER' ? (
-        <div className="profile">
-          <Jumbotron fluid className="jumbotron">
-            <Container className="jumbotron__containr">
-              <h1>Bienvenu {username}</h1>
-              <p>
-                Dans cette section vous pouvez gerer tout ce qui vous concerne et aussi contacter nos brillant monteur!
-              </p>
-              <div className="jumbotron__containr__links">
-                <Link to="/user/commands" className="jumbotron__containr__links__icon"><FaScroll fontSize="40" /></Link>
-                <Link to="/user/message" className="jumbotron__containr__links__icon"><FaEnvelope fontSize="40" /></Link>
-                <Link to="/user/pc" className="jumbotron__containr__links__icon"><FaRobot fontSize="40" /></Link>
-              </div>
-            </Container>
-          </Jumbotron>
-          <div className="user">
-            <div className="user__nav">
-              <Image className="user__nav__avatar" src={`http://localhost:3000/assets/gifs/${image}`} rounded />
-              <div className="user__nav__content">
-                <div className="user__nav__content__infos">
-                  <a> {firstname} {lastname}</a>
-                  <Link to="/user">{username}</Link>
-                  <a>level {level}</a>
-                  <a>{email}</a>
-                </div>
-                <div className="user__nav__content__profilelinks">
-                  <Link to="/user/commands" className="user__nav__content__profilelinks__icon"><FaScroll fontSize="40" /></Link>
-                  <Link to="/user/message" className="user__nav__content__profilelinks__icon"><FaEnvelope fontSize="40" /></Link>
-                  <Link to="/user/pc" className="user__nav__content__profilelinks__icon"><FaRobot fontSize="40" /></Link>
-                </div>
-                <div className="user__nav__content__links">
-                  <Link to="/user/edit-info">Editer mes infos</Link>
-                  <Link to="/user/change-password">Changer de mot de passe</Link>
-                  <a href="#">Se deconnecter</a>
-                </div>
-              </div>
+    <div className="profile">
+      <Jumbotron fluid className="jumbotron">
+        <Container className="jumbotron__containr">
+          <h1>Bienvenu {username}</h1>
+          <p>
+            Dans cette section vous pouvez gerer tout ce qui vous concerne et aussi contacter nos brillant monteur!
+          </p>
+          <div className="jumbotron__containr__links">
+            <Link to="/user/commands" className="jumbotron__containr__links__icon"><FaScroll fontSize="40" /></Link>
+            <Link to="/user/message" className="jumbotron__containr__links__icon"><FaEnvelope fontSize="40" /></Link>
+            <Link to="/user/pc" className="jumbotron__containr__links__icon"><FaRobot fontSize="40" /></Link>
+          </div>
+        </Container>
+      </Jumbotron>
+      <div className="user">
+        <div className="user__nav">
+          <Image className="user__nav__avatar" src={`http://localhost:3000/assets/gifs/${image}`} rounded />
+          <div className="user__nav__content">
+            <div className="user__nav__content__infos">
+              <a> {firstname} {lastname}</a>
+              <Link to="/user">{username}</Link>
+              <a>level {level}</a>
+              <a>{email}</a>
             </div>
-            <div className="user__body container">
-              <Switch>
-                <Route exact path="/user">
-                  <Progress level={level} />
-                </Route>
-                <Route path="/user/pc">
-                  <Pc />
-                </Route>
-                <Route path="/user/edit-info">
-                  <EditProfile />
-                </Route>
-                <Route path="/user/change-password">
-                  <ChangePassword />
-                </Route>
-                <Route path="/user/commands">
-                  <Commands />
-                </Route>
-                <Route path="/user/message">
-                  <Message />
-                </Route>
-              </Switch>
+            <div className="user__nav__content__profilelinks">
+              <Link to="/user/commands" className="user__nav__content__profilelinks__icon"><FaScroll fontSize="40" /></Link>
+              <Link to="/user/message" className="user__nav__content__profilelinks__icon"><FaEnvelope fontSize="40" /></Link>
+              <Link to="/user/pc" className="user__nav__content__profilelinks__icon"><FaRobot fontSize="40" /></Link>
+            </div>
+            <div className="user__nav__content__links">
+              <Link to="/user/edit-info">Editer mes infos</Link>
+              <Link to="/user/change-password">Changer de mot de passe</Link>
+              <a href="#">Se deconnecter</a>
             </div>
           </div>
         </div>
-      ) : (<Redirect to={{ pathname: '/login' }} />)}
-    </Container>
+        <div className="user__body container">
+          <Switch>
+            <Route exact path="/user">
+              <Progress level={level} />
+            </Route>
+            <Route path="/user/pc">
+              <Pc />
+            </Route>
+            <Route path="/user/edit-info">
+              <EditProfile />
+            </Route>
+            <Route path="/user/change-password">
+              <ChangePassword />
+            </Route>
+            <Route path="/user/commands">
+              <Commands />
+            </Route>
+            <Route path="/user/message">
+              <Message />
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </div>
   );
 };
 

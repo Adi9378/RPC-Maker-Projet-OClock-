@@ -17,9 +17,9 @@ const Login = ({
     e.preventDefault();
     login();
   };
-
   return (
-    <div className="container">
+    <div className="container">*
+
       { isLogged === true && role === 'ROLE_USER' && (
         <Redirect to="/user" />
       ) }
