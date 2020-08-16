@@ -11,6 +11,7 @@ import User from 'src/containers/Account/User';
 import BackOffice from 'src/containers/Account/BackOffice';
 import NoMatch from 'src/components/Layout/NoMatch';
 import Header from '../../containers/Layout/header';
+import Conversations from 'src/containers/Account/BackOffice/Conversations';
 import Devis from 'src/containers/Devis';
 import Footer from '../Layout/footer';
 // == Import
@@ -57,6 +58,13 @@ const App = ({ autoLog, isLogged, role }) => {
             ) : (
               <Redirect to="/login" />
             )}
+          </Route>
+          <Route path="/backoffice/message">
+            {isLogged && role === "ROLE_BUILDER" ? (
+              <Conversations />) : (
+                <Redirect to="/login" />
+              )}
+            
           </Route>
           <Route path="/devis">
             <Devis />

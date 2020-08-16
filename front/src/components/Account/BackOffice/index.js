@@ -32,9 +32,9 @@ const BackOffice = ({ getClients, clients, user, activateLoad, backLoading, }) =
           <Route path="/backoffice/clients">
             <Clients clients={clients} isLoading={backLoading} />
           </Route>
-          <Route path="/backoffice/message">
+          {/* <Route path="/backoffice/message">
             <Conversations />
-          </Route>
+          </Route> */}
           <Route path="/backoffice/client/order/edit/:id">
             <OrderEdit />
           </Route>
