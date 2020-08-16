@@ -38,7 +38,7 @@ const BackOffice = ({ getClients, clients, user, activateLoad, backLoading, }) =
           <Route path="/backoffice/client/order/:id">
             <Order />
           </Route>
-          <Route path="/backoffice">
+          <Route path="/backoffice/">
             backoffice
           </Route>
         </Switch>
